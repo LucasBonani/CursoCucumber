@@ -32,9 +32,10 @@ Cenário: Deve calcular atraso na entrega da China
 	
 Cenário: Deve criar steps genéricos para estes passos
     Dado que o ticket é AF345
-    Dado que o valor da passagem é R$ 230,45
-    Dado que o nome do passageiro é "Fulano da Silva"
-    Dado que o telefone do passageiro é 9999-9999
+    E que o valor da passagem é R$ 230,45
+    E que o nome do passageiro é "Fulano da Silva"
+    # Mas serve para negação
+    Mas que o telefone do passageiro é 9999-9999  
     Quando criar os steps
     Então o teste vai funcionar
 

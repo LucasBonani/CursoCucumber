@@ -1,4 +1,5 @@
 
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -6,6 +7,7 @@ import java.util.Date;
 
 import org.junit.Assert;
 
+import cucumber.api.Transform;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
@@ -18,7 +20,8 @@ public class AprenderCucumberSteps {
 //	
 //	}
 
-	// exemplos usando snippets = SnippetType.CAMELCASE
+	// exemplos usando snippets = SnippetType.CAMELCASE 
+	// @Dado, @Quando e @ Então não são lidos pelo Cucumber dentro daqui dos Steps, ou seja, não influencia nos steps
 	@Dado("^que criei o arquivo corretamente$")
 	public void queCrieiOArquivoCorretamente() throws Throwable {
 	}
@@ -55,13 +58,9 @@ public class AprenderCucumberSteps {
 	
 	Date entrega = new Date();
 	
-	@Dado("^que a entrega é dia (\\d+)/(\\d+)/(\\d+)$")
-	public void queAEntregaÉDia(int dia, int mes, int ano) throws Throwable {
-		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.DAY_OF_MONTH, dia);
-		cal.set(Calendar.MONTH, mes - 1);
-		cal.set(Calendar.YEAR, ano);
-		entrega = cal.getTime();
+	@Dado("^que a entrega é dia (.*)$")
+	public void queAEntregaÉDia(@Transform(DataConverter.class)Date data) throws Throwable {
+		entrega = data;
 	}
 
 	@Quando("^a entrega atrasar em (\\d+) (dia|dias|mes|meses)$")
@@ -86,20 +85,20 @@ public class AprenderCucumberSteps {
 	
 	/***  DESAFIO  ***/ 
 	
-	@Dado("^que o ticket( especial)? é A.(\\d+)$")
-	public void queOTicketÉ(String tipo , int arg1) throws Throwable {
+	@Dado("^que o ticket( especial)? é A.(\\d{3})$")
+	public void queOTicketÉ(String tipo , String arg1) throws Throwable {
 	}
 
-	@Dado("^que o valor da passagem é R\\$ (\\d+),(\\d+)$")
-	public void queOValorDaPassagemÉR$(int arg1, int arg2) throws Throwable {
+	@Dado("^que o valor da passagem é R\\$ (.*)$")
+	public void queOValorDaPassagemÉR$(Double numero) throws Throwable {
 	}
 
-	@Dado("^que o nome do passageiro é \"(.*)\"$")
+	@Dado("^que o nome do passageiro é \"(.{5,20})\"$")
 	public void queONomeDoPassageiroÉ(String arg1) throws Throwable {
 	}
 
-	@Dado("^que o telefone do passageiro é (\\d+)-(\\d+)$")
-	public void queOTelefoneDoPassageiroÉ(int arg1, int arg2) throws Throwable {
+	@Dado("^que o telefone do passageiro é (9\\d{3}-\\d{4})$")
+	public void queOTelefoneDoPassageiroÉ(String telefone) throws Throwable {
 	}
 
 	@Quando("^criar os steps$")
