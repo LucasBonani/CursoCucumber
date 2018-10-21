@@ -59,7 +59,7 @@ public class AprenderCucumberSteps {
 	}
 	
 	Date entrega = new Date();
-	
+	//transform = vai converter a variável para o formato da data determinado na classe
 	@Dado("^que a entrega é dia (.*)$")
 	public void queAEntregaÉDia(@Transform(DataConverter.class)Date data) throws Throwable {
 		entrega = data;
@@ -87,15 +87,15 @@ public class AprenderCucumberSteps {
 	
 	/***  DESAFIO  ***/ 
 	
-	@Dado("^que o ticket( especial)? é A.(\\d{3})$")
+	@Dado("^que o ticket( especial)? é (A.\\d{3})$")
 	public void queOTicketÉ(String tipo , String arg1) throws Throwable {
 	}
 
-	@Dado("^que o valor da passagem é R\\$ (.*)$")
-	public void queOValorDaPassagemÉR$(Double numero) throws Throwable {
+	@Dado("^que o valor da passagem é R\\$ (\\d+).(\\d+)$") //R\\$ (.*) - aceita qualquer tipo de caracter
+	public void queOValorDaPassagemÉR$(int arg1 , int arg2) throws Throwable {
 	}
 
-	@Dado("^que o nome do passageiro é \"(.{5,20})\"$")
+	@Dado("^que o nome do passageiro é \"(.{5,20})\"$") // de 5 a 20 caracteres
 	public void queONomeDoPassageiroÉ(String arg1) throws Throwable {
 	}
 

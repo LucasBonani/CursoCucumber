@@ -13,6 +13,7 @@ public class DataConverter extends Transformer<Date>{
 		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		try {
 			Date retorno = format.parse(arg0);
+			return retorno;
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

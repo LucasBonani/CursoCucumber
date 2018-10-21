@@ -7,10 +7,18 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
+		/*features = serve para indicar ao runner qual caminho escolher para encontrar as features para teste*/
+		features = "src/test/resources/features/aprender_cucumberII.feature",
+		/*glue = indica qual pacote o runner encontrará os steps*/
+		glue = "steps",
 		/* mantém o relatório do Console no estilo do Cucumber */
 		plugin = "pretty",
 		/* tira caracteres especiais */
 		monochrome = true,
+		/*para indicar qual tag será testada
+		 * se colocar: tags = {"@primeraTag","@segundaTag"}, terá somente os cts que possuem as duas tags
+		 * se colocar: tags = {"@primeraTag , @segundaTag"}, terá somente os cts que possuem pelo menos uma duas tags*/
+		tags = "@primeraTag",
 		/* deixa os métodos da classe Steps no estilo 
 		 * camelCase, mantendo o padrão do Java
 		 * Obs. Por padrão o Cucumber cria métodos
